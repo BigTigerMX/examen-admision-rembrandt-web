@@ -8,6 +8,14 @@ Versión **con base de datos** del examen de admisión del Instituto Rembrandt d
 
 **Stack:** Next.js 16 · React 19 · Supabase (plan Free) · Vercel (plan Free).
 
+## Desplegar en Vercel (1 clic)
+
+> Antes de pulsar el botón crea tu proyecto Supabase (paso 1 de “Puesta en marcha”): necesitarás el **Project URL** y la **anon public key** para pegarlas cuando Vercel te las pida.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBigTigerMX%2Fexamen-admision-rembrandt-web&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY&envDescription=Pega%20el%20Project%20URL%20y%20la%20anon%20public%20key%20de%20tu%20proyecto%20Supabase&envLink=https%3A%2F%2Fgithub.com%2FBigTigerMX%2Fexamen-admision-rembrandt-web%23puesta-en-marcha&project-name=examen-admision-rembrandt&repository-name=examen-admision-rembrandt-web)
+
+El botón clona el repo en tu cuenta, te pide las dos variables de Supabase y publica la app con una URL lista para usar en cualquier dispositivo.
+
 ## Rutas
 - `/` — inicio.
 - `/examen` — aspirante: código de un solo uso → examen → "enviado".
