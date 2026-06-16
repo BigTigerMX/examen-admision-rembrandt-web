@@ -67,7 +67,7 @@ function nivelColor(pct: number, pass: number) {
 
 export default function CoordinacionPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
   const [busy, setBusy] = useState(false);
   const [loginErr, setLoginErr] = useState("");
@@ -119,12 +119,15 @@ export default function CoordinacionPage() {
   const login = async () => {
     setBusy(true);
     setLoginErr("");
+    // El usuario escribe solo su "usuario"; internamente se usa un correo.
+    const u = username.trim().toLowerCase();
+    const loginEmail = u.includes("@") ? u : `${u}@irembrandt.com.mx`;
     const { error } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
+      email: loginEmail,
       password: pass,
     });
     setBusy(false);
-    if (error) setLoginErr("Correo o contraseña incorrectos.");
+    if (error) setLoginErr("Usuario o contraseña incorrectos.");
   };
   const logout = async () => {
     await supabase.auth.signOut();
@@ -165,13 +168,13 @@ export default function CoordinacionPage() {
               (NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY).
             </div>
           )}
-          <label>Correo</label>
+          <label>Usuario</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             autoComplete="username"
-            placeholder="coordinacion@correo.com"
+            placeholder="coordinacion"
           />
           <label className="mt">Contraseña</label>
           <input
