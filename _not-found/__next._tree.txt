@@ -1,2 +1,2 @@
-:HL["/examen-admision-rembrandt-web/_next/static/chunks/0vko651lf9.a2.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"MNdsaI4zOoPan-uqaRgok"}
+:HL["/examen-admision-rembrandt-web/_next/static/chunks/0wk0j-p-_7~ko.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"g5uMhL7kD4mVbXQKovd3T"}

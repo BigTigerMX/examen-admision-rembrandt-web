@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
 2:I[47257,["/examen-admision-rembrandt-web/_next/static/chunks/01xlw8hd842-c.js","/examen-admision-rembrandt-web/_next/static/chunks/0d3shmwh5_nmn.js"],"ClientPageRoot"]
-3:I[39849,["/examen-admision-rembrandt-web/_next/static/chunks/01xlw8hd842-c.js","/examen-admision-rembrandt-web/_next/static/chunks/0d3shmwh5_nmn.js","/examen-admision-rembrandt-web/_next/static/chunks/16m7nj6qda-xi.js","/examen-admision-rembrandt-web/_next/static/chunks/0-pn0oc1yx6i9.js"],"default"]
+3:I[39849,["/examen-admision-rembrandt-web/_next/static/chunks/01xlw8hd842-c.js","/examen-admision-rembrandt-web/_next/static/chunks/0d3shmwh5_nmn.js","/examen-admision-rembrandt-web/_next/static/chunks/0hxvyu~p-ujnl.js","/examen-admision-rembrandt-web/_next/static/chunks/0-pn0oc1yx6i9.js"],"default"]
 6:I[97367,["/examen-admision-rembrandt-web/_next/static/chunks/01xlw8hd842-c.js","/examen-admision-rembrandt-web/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/examen-admision-rembrandt-web/_next/static/chunks/16m7nj6qda-xi.js","async":true}],["$","script","script-1",{"src":"/examen-admision-rembrandt-web/_next/static/chunks/0-pn0oc1yx6i9.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"MNdsaI4zOoPan-uqaRgok"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/examen-admision-rembrandt-web/_next/static/chunks/0hxvyu~p-ujnl.js","async":true}],["$","script","script-1",{"src":"/examen-admision-rembrandt-web/_next/static/chunks/0-pn0oc1yx6i9.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"g5uMhL7kD4mVbXQKovd3T"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
