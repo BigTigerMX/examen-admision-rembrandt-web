@@ -114,6 +114,15 @@ table.data tbody tr:hover{background:#f6f8fd}
 .lvl-tag{padding:3px 10px;border-radius:99px;color:#fff;font-weight:700;font-size:12px;white-space:nowrap}
 .hint{background:#fff7e6;border:1px solid #f3e1b5;color:#5a4310;padding:10px 14px;border-radius:12px;font-size:13px;margin-bottom:14px}
 
+/* recuadro de credenciales para la presentación */
+.cred-box{margin-top:16px;border:1.5px dashed var(--azul2);background:linear-gradient(135deg,#eef3ff,#f7f9ff);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.18s}
+.cred-box:hover{box-shadow:0 6px 18px rgba(59,91,214,.18);transform:translateY(-1px)}
+.cred-box .cred-title{font-weight:800;color:var(--azul);font-size:13px;margin-bottom:8px}
+.cred-box .cred-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(59,91,214,.12)}
+.cred-box .cred-row span{color:#586074;font-size:13px}
+.cred-box .cred-row b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;color:var(--azul);letter-spacing:.5px}
+.cred-box small{display:block;margin-top:8px;color:#7a8197;font-size:11.5px;text-align:center}
+
 /* editor de preguntas */
 .qedit{border:1px solid var(--linea);border-radius:12px;padding:14px;margin-bottom:12px;background:#fbfcff}
 .qedit .opts4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}

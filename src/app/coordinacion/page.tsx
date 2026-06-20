@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase, supabaseConfigured } from "@/lib/supabase";
+import { exportResultsXlsx, exportStudentsXlsx } from "@/lib/excel";
 
 type Subject = { id: string; name: string; icon: string; position: number };
 type Question = {
@@ -49,6 +50,11 @@ type Config = {
   shuffle: boolean;
   time_limit: number;
 };
+
+// Credenciales que se muestran en pantalla durante la presentación.
+// Deben coincidir con el usuario de Coordinación dado de alta en Supabase.
+const DEMO_USER = "coordinacion";
+const DEMO_PASS = "Rembrandt2026";
 
 const SUBJ_NAME: Record<string, string> = {
   matematicas: "Matemáticas",
@@ -194,6 +200,25 @@ export default function CoordinacionPage() {
               {busy ? "Entrando…" : "Entrar"}
             </button>
           </div>
+          <div
+            className="cred-box"
+            onClick={() => {
+              setUsername(DEMO_USER);
+              setPass(DEMO_PASS);
+            }}
+            title="Clic para rellenar automáticamente"
+          >
+            <div className="cred-title">🔑 Acceso de demostración</div>
+            <div className="cred-row">
+              <span>Usuario</span>
+              <b>{DEMO_USER}</b>
+            </div>
+            <div className="cred-row">
+              <span>Contraseña</span>
+              <b>{DEMO_PASS}</b>
+            </div>
+            <small>Toca este recuadro para rellenar los campos.</small>
+          </div>
         </div>
         {toast && (
           <div className="toast-wrap">
@@ -242,6 +267,7 @@ export default function CoordinacionPage() {
           {tab === "stud" && (
             <StudentsTab
               students={students}
+              cfg={cfg}
               notify={notify}
               reload={loadAll}
               ask={(msg, onYes) => setConfirmBox({ msg, onYes })}
@@ -331,20 +357,15 @@ function ResultsTab({
     .filter((r) => !search || r.student_name.toLowerCase().includes(search.toLowerCase()))
     .filter((r) => !fstatus || (fstatus === "suf" ? r.pct >= pass : r.pct < pass));
 
-  const exportCSV = () => {
-    if (!results.length) return;
-    const head = ["Folio", "Aspirante", "Escuela", "Aciertos", "Total", "Porcentaje", "Calificacion", "Nivel", "Fecha", "Correo"];
-    let csv = "﻿" + head.join(",") + "\n";
-    results.forEach((r) => {
-      csv +=
-        [r.folio, r.student_name, r.origin, r.hits, r.total, r.pct + "%", r.grade, r.level, new Date(r.created_at).toLocaleString("es-MX"), r.contact_email]
-          .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
-          .join(",") + "\n";
-    });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-    a.download = "resultados_admision.csv";
-    a.click();
+  const [xbusy, setXbusy] = useState(false);
+  const exportExcel = async () => {
+    if (!results.length || xbusy) return;
+    setXbusy(true);
+    try {
+      await exportResultsXlsx(results, subjects, cfg);
+    } finally {
+      setXbusy(false);
+    }
   };
 
   if (cert) {
@@ -475,8 +496,8 @@ function ResultsTab({
             </select>
           </div>
           <div style={{ flex: "0 0 auto" }}>
-            <button className="btn sec" onClick={exportCSV}>
-              ⬇️ Exportar (CSV)
+            <button className="btn" onClick={exportExcel} disabled={xbusy || !results.length}>
+              {xbusy ? "Generando…" : "📊 Exportar a Excel"}
             </button>
           </div>
         </div>
@@ -536,11 +557,13 @@ function ResultsTab({
 /* ======================= ASPIRANTES ======================= */
 function StudentsTab({
   students,
+  cfg,
   notify,
   reload,
   ask,
 }: {
   students: Student[];
+  cfg: Config | null;
   notify: (m: string, t?: string) => void;
   reload: () => void;
   ask: (msg: string, onYes: () => void) => void;
@@ -583,20 +606,15 @@ function StudentsTab({
     notify("Código copiado: " + code, "ok");
   };
 
-  const exportCSV = () => {
-    if (!students.length) return;
-    const head = ["Codigo", "Aspirante", "EscuelaProcedencia", "Estado", "CorreoContacto"];
-    let csv = "﻿" + head.join(",") + "\n";
-    students.forEach((s) => {
-      csv +=
-        [s.code, s.full_name, s.origin, s.status === "completed" ? "Contestado" : "Pendiente", s.contact_email]
-          .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
-          .join(",") + "\n";
-    });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-    a.download = "aspirantes_codigos.csv";
-    a.click();
+  const [xbusy, setXbusy] = useState(false);
+  const exportExcel = async () => {
+    if (!students.length || xbusy) return;
+    setXbusy(true);
+    try {
+      await exportStudentsXlsx(students, cfg);
+    } finally {
+      setXbusy(false);
+    }
   };
 
   const list = students
@@ -639,8 +657,8 @@ function StudentsTab({
         </div>
         <div className="row mt">
           <div style={{ flex: "0 0 auto" }}>
-            <button className="btn sec sm" onClick={exportCSV}>
-              ⬇️ Exportar lista + códigos (CSV)
+            <button className="btn sec sm" onClick={exportExcel} disabled={xbusy || !students.length}>
+              {xbusy ? "Generando…" : "📊 Exportar lista + códigos (Excel)"}
             </button>
           </div>
         </div>
