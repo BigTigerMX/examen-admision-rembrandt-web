@@ -52,9 +52,12 @@ type Config = {
 };
 
 // Credenciales que se muestran en pantalla durante la presentación.
-// Deben coincidir con el usuario de Coordinación dado de alta en Supabase.
+// DEMO_PASS es lo que se ve; DEMO_FILL es el valor EXACTO con el que se dio de
+// alta el usuario en Supabase (se le coló un espacio inicial al crearlo). El
+// recuadro rellena DEMO_FILL para que el login funcione con un clic.
 const DEMO_USER = "coordinacion";
 const DEMO_PASS = "Rembrandt2026";
+const DEMO_FILL = " Rembrandt2026";
 
 const SUBJ_NAME: Record<string, string> = {
   matematicas: "Matemáticas",
@@ -204,7 +207,7 @@ export default function CoordinacionPage() {
             className="cred-box"
             onClick={() => {
               setUsername(DEMO_USER);
-              setPass(DEMO_PASS);
+              setPass(DEMO_FILL);
             }}
             title="Clic para rellenar automáticamente"
           >
